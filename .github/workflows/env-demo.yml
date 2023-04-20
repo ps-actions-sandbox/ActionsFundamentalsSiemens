@@ -1,0 +1,22 @@
+name: Environments
+on: 
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Env to run on"
+        type: environment
+        required: true
+        
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    environment: Test
+    steps:
+      - run: echo "Test env"
+  production:
+    needs: test
+    runs-on: ubuntu-latest
+    environment: Production
+    steps:
+      - run: echo "Prod env"
+  
